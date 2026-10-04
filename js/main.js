@@ -105,6 +105,7 @@
 
       var name = document.getElementById("cf-name").value.trim();
       var email = document.getElementById("cf-email").value.trim();
+      var subject = document.getElementById("cf-subject").value.trim();
       var message = document.getElementById("cf-message").value.trim();
       var hp = document.getElementById("cf-hp").value;
 
@@ -127,6 +128,7 @@
       var formData = new FormData();
       formData.append("name", name);
       formData.append("email", email);
+      formData.append("subject", subject);
       formData.append("message", message);
       formData.append("hp", hp);
 

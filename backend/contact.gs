@@ -38,6 +38,7 @@ function doPost(e) {
 
     var name = String(data.name || "").trim();
     var email = String(data.email || "").trim();
+    var subject = String(data.subject || "").trim();
     var message = String(data.message || "").trim();
 
     if (!name || !email || !message) {
@@ -49,8 +50,8 @@ function doPost(e) {
 
     MailApp.sendEmail({
       to: RECIPIENT,
-      subject: "Portfolio contact from " + name,
-      body: "Name: " + name + "\nEmail: " + email + "\n\n" + message
+      subject: subject ? subject : "Portfolio contact from " + name,
+      body: "Name: " + name + "\nEmail: " + email + "\nSubject: " + (subject || "(none)") + "\n\n" + message
     });
 
     return json({ ok: true });
