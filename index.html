@@ -404,32 +404,39 @@
                             </a>
                           </div>
 
-                          <form class="contact-form" id="contact-form" novalidate>
-                            <div class="form-row">
-                              <div class="form-field">
-                                <label for="cf-name">Name</label>
-                                <input type="text" id="cf-name" name="name" required autocomplete="name" placeholder="Your name" />
-                              </div>
-                              <div class="form-field">
-                                <label for="cf-email">Email</label>
-                                <input type="email" id="cf-email" name="email" required autocomplete="email" placeholder="you@example.com" />
-                              </div>
-                            </div>
-                            <div class="form-field">
-                                                          <label for="cf-subject">Subject</label>
-                                                          <input type="text" id="cf-subject" name="subject" placeholder="What's this about?" />
-                                                        </div>
-                                                        <div class="form-field">
-                                                          <label for="cf-message">Message</label>
-                                                          <textarea id="cf-message" name="message" rows="5" required placeholder="Send me a message! Let's talk!"></textarea>
-                                                        </div>
-                            <div class="form-hp" aria-hidden="true">
-                              <label for="cf-hp">Leave this field empty</label>
-                              <input type="text" id="cf-hp" name="hp" tabindex="-1" autocomplete="off" />
-                            </div>
-                            <button type="submit" class="btn btn-primary" id="cf-submit">Send Message <span aria-hidden="true">→</span></button>
-                            <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
-                          </form>
+                          <button type="button" class="contact-toggle" id="contact-toggle" aria-expanded="false" aria-controls="contact-collapse">
+            Send Me a Message <span class="toggle-arrow" aria-hidden="true">↓</span>
+          </button>
+          <div class="contact-collapse" id="contact-collapse">
+            <div class="contact-collapse-inner">
+              <form class="contact-form" id="contact-form" novalidate>
+                                          <div class="form-row">
+                                            <div class="form-field">
+                                              <label for="cf-name">Name</label>
+                                              <input type="text" id="cf-name" name="name" required autocomplete="name" placeholder="Your name" />
+                                            </div>
+                                            <div class="form-field">
+                                              <label for="cf-email">Email</label>
+                                              <input type="email" id="cf-email" name="email" required autocomplete="email" placeholder="you@example.com" />
+                                            </div>
+                                          </div>
+                                          <div class="form-field">
+                                                                        <label for="cf-subject">Subject</label>
+                                                                        <input type="text" id="cf-subject" name="subject" placeholder="What's this about?" />
+                                                                      </div>
+                                                                      <div class="form-field">
+                                                                        <label for="cf-message">Message</label>
+                                                                        <textarea id="cf-message" name="message" rows="5" required placeholder="Send me a message! Let's talk!"></textarea>
+                                                                      </div>
+                                          <div class="form-hp" aria-hidden="true">
+                                            <label for="cf-hp">Leave this field empty</label>
+                                            <input type="text" id="cf-hp" name="hp" tabindex="-1" autocomplete="off" />
+                                          </div>
+                                          <button type="submit" class="btn btn-primary" id="cf-submit">Send Message <span aria-hidden="true">→</span></button>
+                                          <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+                                        </form>
+            </div>
+          </div>
                         </div>
       </div>
     </section>

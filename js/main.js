@@ -158,6 +158,24 @@
     });
   }
 
+  /* ---------- Collapsible contact form ---------- */
+  var contactToggle = document.getElementById("contact-toggle");
+  var contactCollapse = document.getElementById("contact-collapse");
+  if (contactToggle && contactCollapse) {
+    function setCollapse(open) {
+      contactCollapse.classList.toggle("open", open);
+      contactToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      var chevron = contactToggle.querySelector(".chevron");
+      if (chevron) chevron.style.transform = open ? "rotate(180deg)" : "";
+    }
+    contactToggle.addEventListener("click", function () {
+      setCollapse(!contactCollapse.classList.contains("open"));
+      if (!contactCollapse.classList.contains("open") && contactCollapse.classList.contains("open")) {
+        // no-op safeguard
+      }
+    });
+  }
+
   /* ---------- Header shadow on scroll ---------- */
   function onScroll() {
     if (window.scrollY > 10) {

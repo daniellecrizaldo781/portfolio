@@ -918,6 +918,96 @@ a.contact-method:hover {
 .form-status.success { color: #2e7d4f; }
 .form-status.error { color: #b3261e; }
 
+/* Collapsible contact form */
+.contact-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 30px;
+  padding: 13px 26px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.contact-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.contact-cta .arrow { transition: transform 0.3s var(--ease); }
+.contact-cta[aria-expanded="true"] .arrow { transform: rotate(180deg); }
+.contact-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.38s var(--ease);
+}
+.contact-collapse-inner {
+  min-height: 0;
+  overflow: hidden;
+  padding-top: 28px;
+}
+.contact-collapse.open { grid-template-rows: 1fr; }
+
+
+
+
+/* Collapsible contact form */
+.contact-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 34px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: 1.5px solid var(--rose-muted);
+  background: var(--blush-soft);
+  color: var(--rose-deep);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.contact-cta:hover {
+  background: var(--blush);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+.contact-cta[aria-expanded="true"] span { transform: rotate(180deg); }
+.contact-cta span { display: inline-block; transition: transform 0.3s var(--ease); }
+
+.contact-collapse {
+  overflow: hidden;
+}
+.contact-collapse-inner {
+  min-height: 0;
+  overflow: hidden;
+  padding-top: 28px;
+}
+.contact-collapse {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s var(--ease), opacity 0.3s var(--ease), margin 0.4s var(--ease);
+}
+.contact-collapse.open {
+  max-height: 700px;
+  opacity: 1;
+}
+.contact-collapse.open .contact-collapse-inner {
+  padding-top: 6px;
+}
+.contact-form {
+  border-top: 1px dashed var(--border);
+  padding-top: 26px;
+  margin-bottom: 0;
+}
+
 /* ============================================================
    FOOTER
    ============================================================ */
