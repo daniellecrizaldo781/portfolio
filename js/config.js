@@ -21,4 +21,4 @@ window.PORTFOLIO_CONFIG.CV_DOWNLOAD_URL =
 // Contact form backend (Google Apps Script Web App /exec URL).
 // Leave empty to hide the contact form's send action gracefully.
 window.PORTFOLIO_CONFIG.CONTACT_ENDPOINT =
-  window.PORTFOLIO_CONFIG.CONTACT_ENDPOINT || "https://script.google.com/macros/s/AKfycbyr5v30QDeU9uTo5G8_UCqPos2k0ixtQysVsoIL3LQxlGIpJT84fFsh4mq5uThaEYvNBA/exec";
+  window.PORTFOLIO_CONFIG.CONTACT_ENDPOINT || "https://script.google.com/macros/s/AKfycbyHCHM11V79E6c76mE9xhT_6qj7rOmNaXPU5GuuRwsJW4L22fn4iwAKjV3qWYwybC6OLQ/exec";
