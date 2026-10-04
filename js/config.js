@@ -17,3 +17,8 @@ window.PORTFOLIO_CONFIG.CV_URL =
 window.PORTFOLIO_CONFIG.CV_DOWNLOAD_URL =
   window.PORTFOLIO_CONFIG.CV_DOWNLOAD_URL ||
   "https://drive.google.com/uc?export=download&id=1SJUipWibo7Ad42HdP8-7LoDqfZGh4MU8";
+
+// Contact form backend (Google Apps Script Web App /exec URL).
+// Leave empty to hide the contact form's send action gracefully.
+window.PORTFOLIO_CONFIG.CONTACT_ENDPOINT =
+  window.PORTFOLIO_CONFIG.CONTACT_ENDPOINT || "";

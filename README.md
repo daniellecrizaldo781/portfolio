@@ -35,6 +35,27 @@ To override at build/deploy time, define `window.PORTFOLIO_CONFIG` **before** `j
 
 The site forces HTTPS: an inline script in `<head>` redirects any `http://` request to `https://` before render. For a proper 301 redirect (better for SEO), enable **Always Use HTTPS** in Cloudflare for the `daniellecrizaldo.com` zone.
 
+## Contact form (send email from the site)
+
+The contact section includes a form that lets visitors type a message and send it directly to your inbox — no email client needed. It works through a **Google Apps Script Web App** backend (free, no third-party).
+
+**Backend code:** `backend/contact.gs` — a standalone Apps Script that receives the form POST and sends it via Gmail's `MailApp.sendEmail()` to `danielle.annmari.crzld@gmail.com`. Includes honeypot spam protection and validation.
+
+**One-time setup:**
+1. Go to https://script.google.com → **+ New project**.
+2. Delete the default code, paste the contents of `backend/contact.gs`, click **Save**.
+3. **Deploy → New deployment → Web app**:
+   - Execute as: **Me**
+   - Who has access: **Anyone** ← critical
+4. Click **Deploy**, authorize Gmail access.
+5. Copy the `/exec` URL and paste it into `js/config.js` as `CONTACT_ENDPOINT`:
+
+```js
+window.PORTFOLIO_CONFIG.CONTACT_ENDPOINT = "https://script.google.com/macros/s/XXXX/exec";
+```
+
+Until `CONTACT_ENDPOINT` is set, the form shows a disabled "Contact form coming soon" state and the site still works normally. **No credentials are ever exposed to the browser.**
+
 ## Local development
 
 ```bash

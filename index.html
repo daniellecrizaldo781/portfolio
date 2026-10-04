@@ -400,10 +400,33 @@
               <span>
                 <span class="contact-label">LinkedIn</span>
                 <span class="contact-value">Danielle Ann Mari Crizaldo</span>
-              </span>
-            </a>
-          </div>
-        </div>
+                              </span>
+                            </a>
+                          </div>
+
+                          <form class="contact-form" id="contact-form" novalidate>
+                            <div class="form-row">
+                              <div class="form-field">
+                                <label for="cf-name">Name</label>
+                                <input type="text" id="cf-name" name="name" required autocomplete="name" placeholder="Your name" />
+                              </div>
+                              <div class="form-field">
+                                <label for="cf-email">Email</label>
+                                <input type="email" id="cf-email" name="email" required autocomplete="email" placeholder="you@example.com" />
+                              </div>
+                            </div>
+                            <div class="form-field">
+                              <label for="cf-message">Message</label>
+                              <textarea id="cf-message" name="message" rows="5" required placeholder="How can I help?"></textarea>
+                            </div>
+                            <div class="form-hp" aria-hidden="true">
+                              <label for="cf-hp">Leave this field empty</label>
+                              <input type="text" id="cf-hp" name="hp" tabindex="-1" autocomplete="off" />
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="cf-submit">Send Message <span aria-hidden="true">→</span></button>
+                            <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+                          </form>
+                        </div>
       </div>
     </section>
   </main>

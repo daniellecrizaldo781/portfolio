@@ -85,6 +85,72 @@
     });
   }
 
+  /* ---------- Contact form ---------- */
+  var contactForm = document.getElementById("contact-form");
+  var contactStatus = document.getElementById("cf-status");
+  var contactSubmit = document.getElementById("cf-submit");
+  var contactEndpoint = cfg.CONTACT_ENDPOINT || "";
+
+  if (contactForm) {
+    if (!contactEndpoint) {
+      contactSubmit.disabled = true;
+      contactSubmit.textContent = "Contact form coming soon";
+      contactStatus.textContent = "Direct messaging is being set up. Please email me in the meantime.";
+      contactStatus.className = "form-status";
+    }
+
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!contactEndpoint) return;
+
+      var name = document.getElementById("cf-name").value.trim();
+      var email = document.getElementById("cf-email").value.trim();
+      var message = document.getElementById("cf-message").value.trim();
+      var hp = document.getElementById("cf-hp").value;
+
+      if (!name || !email || !message) {
+        contactStatus.textContent = "Please fill in all fields.";
+        contactStatus.className = "form-status error";
+        return;
+      }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        contactStatus.textContent = "Please enter a valid email address.";
+        contactStatus.className = "form-status error";
+        return;
+      }
+
+      contactSubmit.disabled = true;
+      contactSubmit.textContent = "Sending…";
+      contactStatus.textContent = "";
+      contactStatus.className = "form-status";
+
+      fetch(contactEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name, email: email, message: message, hp: hp })
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data && data.ok) {
+            contactStatus.textContent = "Thanks! Your message has been sent.";
+            contactStatus.className = "form-status success";
+            contactForm.reset();
+          } else {
+            contactStatus.textContent = (data && data.error) || "Something went wrong. Please try again.";
+            contactStatus.className = "form-status error";
+          }
+        })
+        .catch(function () {
+          contactStatus.textContent = "Could not reach the server. Please try again or email me directly.";
+          contactStatus.className = "form-status error";
+        })
+        .finally(function () {
+          contactSubmit.disabled = false;
+          contactSubmit.textContent = "Send Message →";
+        });
+    });
+  }
+
   /* ---------- Header shadow on scroll ---------- */
   function onScroll() {
     if (window.scrollY > 10) {
