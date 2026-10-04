@@ -8,6 +8,12 @@
    ============================================================ */
 window.PORTFOLIO_CONFIG = window.PORTFOLIO_CONFIG || {};
 
+// Inline preview URL (embedded in the same-page resume modal).
 window.PORTFOLIO_CONFIG.CV_URL =
   window.PORTFOLIO_CONFIG.CV_URL ||
-  "https://drive.google.com/file/d/1SJUipWibo7Ad42HdP8-7LoDqfZGh4MU8/view?usp=drive_link";
+  "https://drive.google.com/file/d/1SJUipWibo7Ad42HdP8-7LoDqfZGh4MU8/preview";
+
+// Direct download URL (used by the "Download PDF" button).
+window.PORTFOLIO_CONFIG.CV_DOWNLOAD_URL =
+  window.PORTFOLIO_CONFIG.CV_DOWNLOAD_URL ||
+  "https://drive.google.com/uc?export=download&id=1SJUipWibo7Ad42HdP8-7LoDqfZGh4MU8";

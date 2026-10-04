@@ -18,17 +18,22 @@ Built as a lightweight, dependency-free static site (HTML + CSS + vanilla JS). N
 
 ## Resume link (CV_URL)
 
-The resume button opens the CV in a new tab. The URL is configured in **one place**:
+The **Resume** button opens the CV in a **same-page modal** (no new tab), with a **Download PDF** button. The URLs are configured in **one place**:
 
 ```
 js/config.js
 ```
 
 ```js
-window.PORTFOLIO_CONFIG.CV_URL = "https://drive.google.com/file/d/1SJUipWibo7Ad42HdP8-7LoDqfZGh4MU8/view?usp=drive_link";
+window.PORTFOLIO_CONFIG.CV_URL = "https://drive.google.com/file/d/1SJUipWibo7Ad42HdP8-7LoDqfZGh4MU8/preview";          // inline preview
+window.PORTFOLIO_CONFIG.CV_DOWNLOAD_URL = "https://drive.google.com/uc?export=download&id=1SJUipWibo7Ad42HdP8-7LoDqfZGh4MU8"; // download
 ```
 
-To override at build/deploy time, define `window.PORTFOLIO_CONFIG.CV_URL` **before** `js/config.js` loads (e.g. via a server-injected snippet). If no CV URL is configured, the Resume button gracefully falls back to the Contact section. **No credentials are ever embedded in the code or exposed to the browser.**
+To override at build/deploy time, define `window.PORTFOLIO_CONFIG` **before** `js/config.js` loads (e.g. via a server-injected snippet). If no CV URL is configured, the Resume button gracefully falls back to the Contact section. **No credentials are ever embedded in the code or exposed to the browser.**
+
+## HTTPS
+
+The site forces HTTPS: an inline script in `<head>` redirects any `http://` request to `https://` before render. For a proper 301 redirect (better for SEO), enable **Always Use HTTPS** in Cloudflare for the `daniellecrizaldo.com` zone.
 
 ## Local development
 

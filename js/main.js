@@ -8,20 +8,82 @@
   var navToggle = document.getElementById("nav-toggle");
   var navMenu = document.getElementById("nav-menu");
   var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-link"));
-  var resumeLinks = Array.prototype.slice.call(document.querySelectorAll("#nav-resume, #hero-resume"));
 
-  /* ---------- CV URL ---------- */
-  var cvUrl = (window.PORTFOLIO_CONFIG && window.PORTFOLIO_CONFIG.CV_URL) || "";
-  resumeLinks.forEach(function (link) {
-    if (cvUrl) {
-      link.setAttribute("href", cvUrl);
-    } else {
-      // No CV configured: keep the button visible but point to the contact section.
-      link.setAttribute("href", "#contact");
-      link.removeAttribute("target");
-      link.removeAttribute("rel");
+  /* ---------- Resume modal ---------- */
+  var modal = document.getElementById("resume-modal");
+  var frame = document.getElementById("resume-frame");
+  var downloadBtn = document.querySelector(".js-resume-download");
+  var openTriggers = Array.prototype.slice.call(document.querySelectorAll(".js-resume-open"));
+  var closeTriggers = Array.prototype.slice.call(document.querySelectorAll("[data-resume-close]"));
+  var lastFocused = null;
+
+  var cfg = window.PORTFOLIO_CONFIG || {};
+  var cvUrl = cfg.CV_URL || "";
+  var cvDownloadUrl = cfg.CV_DOWNLOAD_URL || "";
+
+  function openModal() {
+    if (!modal) return;
+    lastFocused = document.activeElement;
+    if (cvUrl) frame.setAttribute("src", cvUrl);
+    if (cvDownloadUrl) downloadBtn.setAttribute("href", cvDownloadUrl);
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    var closeBtn = modal.querySelector(".resume-modal-close");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    if (lastFocused) lastFocused.focus();
+  }
+
+  openTriggers.forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  closeTriggers.forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      closeModal();
+    });
+  });
+
+  // Close on Escape.
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      if (modal && modal.classList.contains("open")) {
+        closeModal();
+      } else if (navMenu.classList.contains("open")) {
+        setMenu(false);
+        navToggle.focus();
+      }
     }
   });
+
+  // Trap focus inside the modal while open.
+  if (modal) {
+    modal.addEventListener("keydown", function (e) {
+      if (e.key !== "Tab") return;
+      var focusables = modal.querySelectorAll('a[href], button:not([disabled])');
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+  }
 
   /* ---------- Header shadow on scroll ---------- */
   function onScroll() {
@@ -50,14 +112,6 @@
     link.addEventListener("click", function () {
       setMenu(false);
     });
-  });
-
-  // Close menu on Escape.
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && navMenu.classList.contains("open")) {
-      setMenu(false);
-      navToggle.focus();
-    }
   });
 
   // Close menu when clicking outside.

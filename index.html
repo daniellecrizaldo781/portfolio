@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Force HTTPS (redirects http:// to https:// before render) -->
+    <script>
+      if (window.location.protocol === "http:" && !/^localhost|127\.0\.0\.1|^192\.168\./.test(window.location.hostname)) {
+        window.location.replace("https://" + window.location.host + window.location.pathname + window.location.search);
+      }
+    </script>
+
   <!-- Primary SEO -->
   <title>Danielle Ann Mari Crizaldo | Customer Service Supervisor &amp; Operations Professional</title>
   <meta name="description" content="Danielle Ann Mari Crizaldo — Customer Service Supervisor and Customer Experience &amp; Operations professional. Team leadership, KPI management, quality assurance, workflow optimization, dashboards, and AI-assisted digital tools." />
@@ -42,7 +49,7 @@
     <nav class="nav container" aria-label="Primary">
       <a class="brand" href="#home" aria-label="Danielle Ann Mari Crizaldo — home">
         <span class="brand-mark" aria-hidden="true">DMC</span>
-        <span class="brand-name">Danielleann Crizaldo</span>
+        <span class="brand-name">Danielle Ann Crizaldo</span>
       </a>
 
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
@@ -58,7 +65,7 @@
         <li><a class="nav-link" href="#skills">Skills</a></li>
         <li><a class="nav-link" href="#projects">Projects</a></li>
         <li><a class="nav-link" href="#contact">Contact</a></li>
-        <li><a class="nav-link nav-resume" href="#" id="nav-resume" target="_blank" rel="noopener">Resume</a></li>
+        <li><a class="nav-link nav-resume js-resume-open" href="#resume-modal">Resume</a></li>
       </ul>
     </nav>
   </header>
@@ -68,14 +75,14 @@
     <section class="hero" id="home">
       <div class="container hero-inner">
         <p class="hero-eyebrow reveal">Customer Experience &amp; Operations Professional</p>
-        <h1 class="hero-title reveal">Danielleann Mari Crizaldo</h1>
+        <h1 class="hero-title reveal">Danielle Ann Mari Crizaldo</h1>
         <p class="hero-role reveal">Customer Service Supervisor &nbsp;•&nbsp; Customer Experience &nbsp;•&nbsp; Operations &nbsp;•&nbsp; AI &amp; Digital Tools</p>
         <p class="hero-intro reveal">
           Results-driven Customer Service Supervisor with experience in customer support, team leadership,
           quality assurance, KPI management, operations, workflow optimization, and AI-assisted digital solutions.
         </p>
         <div class="hero-actions reveal">
-          <a class="btn btn-primary" href="#" id="hero-resume" target="_blank" rel="noopener">View My Resume <span aria-hidden="true">→</span></a>
+          <a class="btn btn-primary js-resume-open" href="#resume-modal">View My Resume <span aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="#experience">Explore My Experience <span aria-hidden="true">↓</span></a>
         </div>
       </div>
@@ -89,7 +96,7 @@
         <div class="about-grid">
           <div class="about-copy reveal">
             <p>
-              Danielleann combines hands-on customer service leadership with operational problem-solving and
+              Danielle combines hands-on customer service leadership with operational problem-solving and
               practical digital skills. Her experience spans team performance, QA, KPI reporting, workflow
               optimization, dashboards, and AI-assisted tools designed to make everyday operations more efficient.
             </p>
@@ -287,7 +294,7 @@
         <p class="section-eyebrow reveal">Digital &amp; Operations Projects</p>
         <h2 class="section-title reveal">Beyond Traditional Customer Support</h2>
         <p class="section-lead reveal">
-          Danielleann goes beyond day-to-day support — she builds practical tools that make operations clearer,
+          Danielle goes beyond day-to-day support — she builds practical tools that make operations clearer,
           faster, and easier to manage.
         </p>
 
@@ -381,20 +388,20 @@
                 <span class="contact-value">danielle.annmari.crzld@gmail.com</span>
               </span>
             </a>
-            <a class="contact-method" href="tel:+639082352381">
+            <a class="contact-method" href="tel:+639****2381">
               <span class="contact-icon" aria-hidden="true">✆</span>
               <span>
                 <span class="contact-label">Phone</span>
                 <span class="contact-value">+63 908-235-2381</span>
               </span>
             </a>
-            <div class="contact-method">
+            <a class="contact-method" href="https://www.linkedin.com/in/danielle-ann-mari-crizaldo-896b96213/" target="_blank" rel="noopener">
               <span class="contact-icon" aria-hidden="true">in</span>
               <span>
                 <span class="contact-label">LinkedIn</span>
-                <span class="contact-value">Profile available on request</span>
+                <span class="contact-value">Danielle Ann Mari Crizaldo</span>
               </span>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -405,11 +412,28 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p class="footer-tagline">Customer Experience • Operations • Digital Solutions</p>
-      <p class="footer-copy">© 2026 Danielleann Mari Crizaldo. All rights reserved.</p>
+      <p class="footer-copy">© 2026 Danielle Ann Mari Crizaldo. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="js/config.js"></script>
-  <script src="js/main.js"></script>
-</body>
-</html>
+  <!-- ============ RESUME MODAL ============ -->
+    <div class="resume-modal" id="resume-modal" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title" aria-hidden="true">
+      <div class="resume-modal-backdrop" data-resume-close></div>
+      <div class="resume-modal-panel" role="document">
+        <div class="resume-modal-head">
+          <h2 class="resume-modal-title" id="resume-modal-title">Resume</h2>
+          <div class="resume-modal-actions">
+            <a class="btn btn-primary btn-sm js-resume-download" href="#" download>Download PDF <span aria-hidden="true">↓</span></a>
+            <button class="resume-modal-close" data-resume-close aria-label="Close resume">✕</button>
+          </div>
+        </div>
+        <div class="resume-modal-body">
+          <iframe class="resume-frame" id="resume-frame" title="Danielle Ann Mari Crizaldo resume" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/config.js"></script>
+        <script src="js/main.js"></script>
+      </body>
+    </html>
