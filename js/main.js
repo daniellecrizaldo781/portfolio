@@ -124,10 +124,15 @@
       contactStatus.textContent = "";
       contactStatus.className = "form-status";
 
+      var formData = new FormData();
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("message", message);
+      formData.append("hp", hp);
+
       fetch(contactEndpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name, email: email, message: message, hp: hp })
+        body: formData
       })
         .then(function (res) { return res.json(); })
         .then(function (data) {

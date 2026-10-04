@@ -21,7 +21,8 @@ var RECIPIENT = "danielle.annmari.crzld@gmail.com";
 
 function doPost(e) {
   try {
-    var data = JSON.parse(e.postData.contents);
+    // Frontend sends FormData (form-encoded) — read from e.parameter.
+    var data = e.parameter || {};
 
     // Honeypot: bots fill this hidden field. Silently accept (pretend success).
     if (data.hp && String(data.hp).trim() !== "") {
