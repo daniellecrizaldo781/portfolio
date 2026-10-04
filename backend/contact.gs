@@ -21,8 +21,15 @@ var RECIPIENT = "danielle.annmari.crzld@gmail.com";
 
 function doPost(e) {
   try {
-    // Frontend sends FormData (form-encoded) — read from e.parameter.
-    var data = e.parameter || {};
+    // Read the submitted fields, supporting BOTH formats:
+    //  - FormData (form-encoded) -> e.parameter
+    //  - JSON body               -> e.postData.contents
+    var data = {};
+    if (e.parameter && Object.keys(e.parameter).length) {
+      data = e.parameter;
+    } else if (e.postData && e.postData.contents) {
+      try { data = JSON.parse(e.postData.contents); } catch (err) { data = {}; }
+    }
 
     // Honeypot: bots fill this hidden field. Silently accept (pretend success).
     if (data.hp && String(data.hp).trim() !== "") {
